@@ -102,3 +102,6 @@ ENV/
 
 # IDE
 .idea/
+
+# local settings
+dev_settings.py
