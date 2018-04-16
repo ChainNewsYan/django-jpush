@@ -1,3 +1,4 @@
+import jpush
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from djpush.schedule import DJPushSchedule
@@ -27,8 +28,8 @@ class ScheduleListAPIView(APIView, DJPushSchedule):
         return Response(res)
 
 
-class ScheduleAPIView(APIView, DJPushSchedule)
-    def post_schedule(self):
+class ScheduleAPIView(APIView, DJPushSchedule):
+    def post(self):
         push = self.my_push
         push.audience = jpush.all_
         push.notification = jpush.notification(alert="Hello, world!")
@@ -39,7 +40,7 @@ class ScheduleAPIView(APIView, DJPushSchedule)
         schedulepayload = jpush.schedulepayload.schedulepayload("name", True, trigger, push)
         return self.my_schedule.post_schedule(schedulepayload)
 
-    def put_schedule(self):
+    def put(self):
         push = self.my_push
         push.audience = jpush.all_
         push.notification = jpush.notification(alert="Hello, world!")
