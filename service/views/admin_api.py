@@ -1,0 +1,22 @@
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from djpush.admin import DJPushAdmin
+
+
+class AdminAPIView(APIView):
+    def post(self):
+        obj = DJPushAdmin()
+        return Response(obj.admin)
+
+
+class AdminCreateAPIView(APIView):
+    def post(self):
+        obj = DJPushAdmin()
+        return Response(obj.create_app())
+
+
+class AdminDeleteAPIView(APIView):
+    def post(self):
+        obj = DJPushAdmin()
+        return Response(obj.delete_app())
