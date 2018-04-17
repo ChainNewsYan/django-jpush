@@ -13,8 +13,8 @@ class ScheduleDeleteAPIView(APIView, DJPushSchedule):
 
 
 class ScheduleGetAPIView(APIView, DJPushSchedule):
-    def post(self):
-        _data = self.request.DATA
+    def get(self):
+        _data = self.request.query_params
         schedule_id = _data.get('schedule_id')
         res = self.get_schedule(schedule_id=schedule_id)
         return Response(res)

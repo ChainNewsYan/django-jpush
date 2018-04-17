@@ -18,5 +18,6 @@ class AdminCreateAPIView(APIView):
 
 class AdminDeleteAPIView(APIView):
     def post(self):
+        app_key = self.request.DATA.get('app_key')
         obj = DJPushAdmin()
-        return Response(obj.delete_app())
+        return Response(obj.delete_app(app_key))

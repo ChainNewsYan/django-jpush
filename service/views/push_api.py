@@ -77,7 +77,7 @@ class OptionsAPIView(APIView, DJPushBasicClass):
         return Response(push.send())
 
 
-class PlatformMsg(APIView, DJPushBasicClass):
+class PlatformMsgAPIView(APIView, DJPushBasicClass):
     def post(self):
         push = self.my_push
         push.audience = jpush.all_
