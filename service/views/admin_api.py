@@ -5,7 +5,7 @@ from djpush.admin import DJPushAdmin
 
 
 class AdminAPIView(APIView):
-    def post(self):
+    def get(self, request, *args, **kwargs):
         obj = DJPushAdmin()
         return Response(obj.admin)
 
