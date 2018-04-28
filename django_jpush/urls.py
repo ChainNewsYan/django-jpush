@@ -22,7 +22,11 @@ schema_view = get_schema_view(title='ChainNews API')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^service/', include('service.urls.api', namespace='service')),
+    url(r'^service/admin/?$', include('service.urls.admin', namespace='service-admin')),
+    url(r'^service/device/?$', include('service.urls.device', namespace='service-device')),
+    url(r'^service/push/?$', include('service.urls.push', namespace='service-push')),
+    url(r'^service/schedule/?$', include('service.urls.schedule', namespace='service-schedule')),
+    url(r'^service/zone/?$', include('service.urls.zone', namespace='service-zone')),
     url(r'^schema/$', schema_view),  # api docs
 ]
 

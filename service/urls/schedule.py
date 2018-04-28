@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from service.views.shchedule_api import ScheduleAPIView, ScheduleDeleteAPIView, ScheduleGetAPIView, ScheduleListAPIView
+from service.views.schedule_api import ScheduleAPIView, ScheduleDeleteAPIView, ScheduleGetAPIView, ScheduleListAPIView
 
 urlpatterns = [
     url(r'^/?$', ScheduleAPIView.as_view(), name='default'),
