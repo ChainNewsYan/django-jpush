@@ -1,9 +1,9 @@
 from django.conf.urls import url
-from service.views.push_api import (AlisaAPIView, AudienceAPIView, AllAPIView, NotificationAPIView, OptionsAPIView,
-                                    SilentAPIView, SmsAPIView, PlatformMsgAPIView, ValidateAPIView)
+from service.views.push_api import (AudienceAPIView, AllAPIView, NotificationAPIView, OptionsAPIView,
+                                    SilentAPIView, SmsAPIView, PlatformMsgAPIView, ValidateAPIView, AliasAPIView)
 
 urlpatterns = [
-    url(r'^alisa/?$', AlisaAPIView.as_view(), name='alisa'),
+    url(r'^alias/?$', AliasAPIView.as_view(), name='alias'),
     url(r'^audience/?$', AudienceAPIView.as_view(), name='audience'),
     url(r'^all/?$', AllAPIView.as_view(), name='all'),
     url(r'^notification/?$', NotificationAPIView.as_view(), name='notification'),

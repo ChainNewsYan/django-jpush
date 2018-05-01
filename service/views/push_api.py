@@ -5,9 +5,9 @@ from rest_framework.views import APIView
 from djpush.basic import DJPushBasicClass
 
 
-class AlisaAPIView(APIView, DJPushBasicClass):
-    def post(self):
-        _data = self.request.DATA
+class AliasAPIView(DJPushBasicClass, APIView):
+    def post(self, request):
+        _data = self.request.data
         alias = _data.get('alias')
         tags = _data.get('tags')
         data = {'alisa': alias}
