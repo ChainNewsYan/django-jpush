@@ -10,7 +10,7 @@ class AliasAPIView(DJPushBasicClass, APIView):
         _data = self.request.data
         alias = _data.get('alias')
         tags = _data.get('tags')
-        data = {'alisa': alias}
+        data = {'alias': alias}
         push = self.my_push
         push.audience = jpush.audience(
             jpush.tag(*tags),
