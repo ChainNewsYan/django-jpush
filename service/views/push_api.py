@@ -1,3 +1,5 @@
+import json
+
 import jpush
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -7,26 +9,30 @@ from djpush.basic import DJPushBasicClass
 
 class AliasAPIView(DJPushBasicClass, APIView):
     def post(self, request):
-        _data = self.request.data
-        alias = _data.get('alias')
-        tags = _data.get('tags')
-        data = {'alias': alias}
+        alias_list = self.request.data.get('alias_list', [])
+        tags_list = self.request.data.get('tags_list', '')
         push = self.my_push
         push.audience = jpush.audience(
-            jpush.tag(*tags),
-            data
+            jpush.tag(*tags_list),
+            alias_list,
         )
         push.notification = jpush.notification(alert="Hello world with audience!")
         push.platform = jpush.all_
-        return Response(push.send())
+        res = push.send()
+        return Response(res.payload)
 
 
-class AllAPIView(APIView, DJPushBasicClass):
-    def post(self):
+class AllAPIView(DJPushBasicClass, APIView):
+    def post(self, request):
+        alert = self.request.data.get('alert', None)
+        extras_data = self.request.data.get('extras', None)
+        production = self.request.data.get('production', True)
         push = self.my_push
         push.audience = jpush.all_
-        push.notification = jpush.notification(alert="!hello python jpush api")
+        push.notification = jpush.notification(alert=alert)
+        push.message = jpush.message("content", extras=extras_data)
         push.platform = jpush.all_
+        push.options = {"time_to_live": 86400, "sendno": 12345, "apns_production": production}
         try:
             response = push.send()
         except jpush.common.Unauthorized:
@@ -37,7 +43,7 @@ class AllAPIView(APIView, DJPushBasicClass):
             raise ("JPushFailure",)
         except:
             raise ("Exception",)
-        return Response(response)
+        return Response(response.payload)
 
 
 class AudienceAPIView(APIView, DJPushBasicClass):
