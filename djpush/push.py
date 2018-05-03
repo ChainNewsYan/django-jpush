@@ -6,7 +6,7 @@ from djpush.basic import DJPushBasicClass
 class DjpushPush(DJPushBasicClass):
     def alias(self, alias: list, tags: list):
         push = self.my_push
-        data = {'alisa': alias}
+        data = {'alias': alias}
         push.audience = jpush.audience(
             jpush.tag(*tags),
             data
