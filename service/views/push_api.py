@@ -29,8 +29,16 @@ class AllAPIView(DJPushBasicClass, APIView):
         production = self.request.data.get('production', True)
         push = self.my_push
         push.audience = jpush.all_
-        push.notification = jpush.notification(alert=alert)
-        push.message = jpush.message("content", extras=extras_data)
+        ios = {
+            "alert": alert,
+            "extras": extras_data
+        }
+        android = {
+            "alert": alert,
+            "extras": extras_data
+        }
+        push.notification = jpush.notification(ios=ios, android=android)
+        push.message = jpush.message("hi", extras=extras_data)
         push.platform = jpush.all_
         push.options = {"time_to_live": 86400, "sendno": 12345, "apns_production": production}
         try:

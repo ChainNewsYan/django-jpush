@@ -9,7 +9,7 @@ class PushTestCase(APITestCase):
         payload = {
             "alert": "Here test message.",
             "production": False,
-            "extras": {"article_slug": "slug"}
+            "extras": {"slug": "249142631482"}
         }
         uri = reverse('service-push:all')
         res = self.client.post(uri, data=payload, format='json')
