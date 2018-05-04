@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from service.views.zone_api import ZoneDefaultAPIView, ZoneBJAPIView
+from djpush.views.zone_api import ZoneDefaultAPIView, ZoneBJAPIView
 
 urlpatterns = [
     url(r'^default/?$', ZoneDefaultAPIView.as_view(), name='default'),

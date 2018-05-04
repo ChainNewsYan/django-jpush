@@ -22,12 +22,12 @@ schema_view = get_schema_view(title='ChainNews API')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^service/register/', include('service.urls.register', namespace='service-register')),
-    url(r'^service/admin/', include('service.urls.admin', namespace='service-admin')),
-    url(r'^service/device/', include('service.urls.device', namespace='service-device')),
-    url(r'^service/push/', include('service.urls.push', namespace='service-push')),
-    url(r'^service/schedule/', include('service.urls.schedule', namespace='service-schedule')),
-    url(r'^service/zone/', include('service.urls.zone', namespace='service-zone')),
+    url(r'^djpush/register/', include('djpush.urls.register', namespace='djpush-register')),
+    url(r'^djpush/admin/', include('djpush.urls.admin', namespace='djpush-admin')),
+    url(r'^djpush/device/', include('djpush.urls.device', namespace='djpush-device')),
+    url(r'^djpush/push/', include('djpush.urls.push', namespace='djpush-push')),
+    url(r'^djpush/schedule/', include('djpush.urls.schedule', namespace='djpush-schedule')),
+    url(r'^djpush/zone/', include('djpush.urls.zone', namespace='djpush-zone')),
     url(r'^schema/$', schema_view),  # api docs
 ]
 

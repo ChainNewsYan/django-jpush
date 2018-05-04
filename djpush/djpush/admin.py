@@ -1,5 +1,6 @@
-from djpush.basic import DJPushBasicClass
 import jpush
+
+from djpush.djpush.basic import DJPushBasicClass
 
 
 class DJPushAdmin(DJPushBasicClass):

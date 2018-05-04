@@ -2,7 +2,7 @@ import jpush
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from djpush.basic import DJPushBasicClass
+from djpush.djpush.basic import DJPushBasicClass
 
 
 class AliasAPIView(DJPushBasicClass, APIView):

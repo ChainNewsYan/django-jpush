@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from service.views.admin_api import AdminAPIView, AdminCreateAPIView, AdminDeleteAPIView
+from djpush.views.admin_api import AdminAPIView, AdminCreateAPIView, AdminDeleteAPIView
 
 urlpatterns = [
     # url(r'^$', AdminAPIView.as_view(), name='list'),

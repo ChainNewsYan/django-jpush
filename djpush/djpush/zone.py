@@ -1,18 +1,15 @@
 import jpush
 from jpush import common
-from rest_framework.response import Response
-from rest_framework.views import APIView
 
-from djpush.zone import DJPushZone
+from djpush.djpush.basic import DJPushBasicClass
 
 
-class ZoneDefaultAPIView(APIView, DJPushZone):
-    def post(self):
-        _data = self.request.DATA
-        alert = _data.get('alert')
+class DJPushZone(DJPushBasicClass):
+
+    def default(self):
         push = self.my_push
         push.audience = jpush.all_
-        push.notification = jpush.notification(alert=alert)
+        push.notification = jpush.notification(alert="!hello python jpush api")
         push.platform = jpush.all_
         try:
             response = push.send()
@@ -24,17 +21,11 @@ class ZoneDefaultAPIView(APIView, DJPushZone):
             print("JPushFailure")
         except:
             print("Exception")
-        return Response(response)
 
-
-class ZoneBJAPIView(APIView, DJPushZone):
-
-    def post(self):
-        _data = self.request.DATA
-        alert = _data.get('alert')
+    def bj(self):
         push = self.my_push
         push.audience = jpush.all_
-        push.notification = jpush.notification(alert=alert)
+        push.notification = jpush.notification(alert="!hello python jpush api")
         push.platform = jpush.all_
         try:
             response = push.send()
@@ -46,4 +37,3 @@ class ZoneBJAPIView(APIView, DJPushZone):
             print("JPushFailure")
         except:
             print("Exception")
-        return Response(response)

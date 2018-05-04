@@ -1,7 +1,7 @@
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
-from service.models import JiGuangReg
-from service.serializers.register_ser import RegisterCreateSerializer
+from djpush.models import JiGuangReg
+from djpush.serializers.register_ser import RegisterCreateSerializer
 
 
 class RegisterAPIView(CreateAPIView):

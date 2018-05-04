@@ -1,7 +1,7 @@
 import jpush
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from djpush.schedule import DJPushSchedule
+from djpush.djpush.schedule import DJPushSchedule
 
 
 class ScheduleDeleteAPIView(APIView, DJPushSchedule):

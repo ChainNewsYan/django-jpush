@@ -1,4 +1,4 @@
-from djpush.basic import DJPushBasicClass
+from djpush.djpush import DJPushBasicClass
 
 
 class DJPushReport(DJPushBasicClass):

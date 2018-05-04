@@ -12,7 +12,7 @@ class AdminTestCase(APITestCase):
 
     def test_admin_list(self):
         pass
-        # uri = reverse('service-admin:list')
+        # uri = reverse('djpush-admin:list')
         # res = self.client.get(uri, format='json')
         # self.assertEqual(res.json(), '')
         # self.assertEqual(res.status_code, HTTP_200_OK)
