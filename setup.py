@@ -10,8 +10,9 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='django-jpush',
     version='0.1',
-    packages=find_packages(),
+    # packages=find_packages(),
     # packages=find_packages('django_jpush', 'djpush', 'service'),
+    packages=['django_jpush', 'djpush', 'service'],
     include_package_data=True,
     license='BSD License',  # example license
     description='django jpush',
