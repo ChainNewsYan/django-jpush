@@ -1,5 +1,6 @@
 import jpush
-from djpush.basic import DJPushBasicClass
+
+from djpush.djpush.basic import DJPushBasicClass
 
 
 class DJPushSchedule(DJPushBasicClass):

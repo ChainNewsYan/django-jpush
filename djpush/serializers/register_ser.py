@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from service.models import JiGuangReg
+from djpush.models import JiGuangReg
 
 
 class RegisterCreateSerializer(serializers.ModelSerializer):

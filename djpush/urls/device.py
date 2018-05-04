@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from service.views.device_api import (
+from djpush.views.device_api import (
     AliasAPIView, CtrlTagAPIView, DeviceAPIView, TagAPIView, TagCheckAPIView, UserTagAPIView, DeviceMobileUpdateAPIView)
 
 urlpatterns = [

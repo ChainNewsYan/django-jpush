@@ -11,8 +11,7 @@ setup(
     name='django-jpush',
     version='0.1',
     # packages=find_packages(),
-    # packages=find_packages('django_jpush', 'djpush', 'service'),
-    packages=['django_jpush', 'djpush', 'service'],
+    packages=['djpush', ],
     include_package_data=True,
     license='BSD License',  # example license
     description='django jpush',

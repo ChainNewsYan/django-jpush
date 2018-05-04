@@ -1,46 +1,25 @@
-import json
-
 import jpush
-from rest_framework.response import Response
-from rest_framework.views import APIView
 
-from djpush.basic import DJPushBasicClass
+from djpush.djpush import DJPushBasicClass
 
 
-class AliasAPIView(DJPushBasicClass, APIView):
-    def post(self, request):
-        alias_list = self.request.data.get('alias_list', [])
-        tags_list = self.request.data.get('tags_list', '')
+class DjpushPush(DJPushBasicClass):
+    def alias(self, alias: list, tags: list):
         push = self.my_push
+        data = {'alias': alias}
         push.audience = jpush.audience(
-            jpush.tag(*tags_list),
-            alias_list,
+            jpush.tag(*tags),
+            data
         )
         push.notification = jpush.notification(alert="Hello world with audience!")
         push.platform = jpush.all_
-        res = push.send()
-        return Response(res.payload)
+        push.send()
 
-
-class AllAPIView(DJPushBasicClass, APIView):
-    def post(self, request):
-        alert = self.request.data.get('alert', None)
-        extras_data = self.request.data.get('extras', None)
-        production = self.request.data.get('production', True)
+    def all(self):
         push = self.my_push
         push.audience = jpush.all_
-        ios = {
-            "alert": alert,
-            "extras": extras_data
-        }
-        android = {
-            "alert": alert,
-            "extras": extras_data
-        }
-        push.notification = jpush.notification(ios=ios, android=android)
-        push.message = jpush.message("hi", extras=extras_data)
+        push.notification = jpush.notification(alert="!hello python jpush api")
         push.platform = jpush.all_
-        push.options = {"time_to_live": 86400, "sendno": 12345, "apns_production": production}
         try:
             response = push.send()
         except jpush.common.Unauthorized:
@@ -48,29 +27,23 @@ class AllAPIView(DJPushBasicClass, APIView):
         except jpush.common.APIConnectionException:
             raise jpush.common.APIConnectionException("conn")
         except jpush.common.JPushFailure:
-            raise ("JPushFailure",)
+            print("JPushFailure")
         except:
-            raise ("Exception",)
-        return Response(response.payload)
+            print("Exception")
 
-
-class AudienceAPIView(APIView, DJPushBasicClass):
-    def audience(self):
-        _data = self.request.DATA
-        alias = _data.get('alias')
-        tags = _data.get('tags')
+    def audience(self, alias: list, tags: list):
         push = self.my_push
+
         push.audience = jpush.audience(
             jpush.tag(tags),
             jpush.alias(alias)
         )
+
         push.notification = jpush.notification(alert="Hello world with audience!")
         push.platform = jpush.all_
-        return Response(push.send())
+        push.send()
 
-
-class NotificationAPIView(APIView, DJPushBasicClass):
-    def post(self):
+    def notification(self):
         push = self.my_push
         push.audience = jpush.all_
         push.platform = jpush.all_
@@ -80,19 +53,15 @@ class NotificationAPIView(APIView, DJPushBasicClass):
         push.notification = jpush.notification(alert="Hello, JPush!", android=android, ios=ios)
         push.send()
 
-
-class OptionsAPIView(APIView, DJPushBasicClass):
-    def post(self):
+    def options(self):
         push = self.my_push
         push.audience = jpush.all_
         push.notification = jpush.notification(alert="Hello, world!")
         push.platform = jpush.all_
         push.options = {"time_to_live": 86400, "sendno": 12345, "apns_production": True}
-        return Response(push.send())
+        push.send()
 
-
-class PlatformMsgAPIView(APIView, DJPushBasicClass):
-    def post(self):
+    def platfrom_msg(self):
         push = self.my_push
         push.audience = jpush.all_
         ios_msg = jpush.ios(alert="Hello, IOS JPush!", badge="+1", sound="a.caf", extras={'k1': 'v1'})
@@ -100,34 +69,28 @@ class PlatformMsgAPIView(APIView, DJPushBasicClass):
         push.notification = jpush.notification(alert="Hello, JPush!", android=android_msg, ios=ios_msg)
         push.message = jpush.message("content", extras={'k2': 'v2', 'k3': 'v3'})
         push.platform = jpush.all_
-        return Response(push.send())
+        push.send()
 
-
-class SilentAPIView(APIView, DJPushBasicClass):
-    def post(self):
+    def silent(self):
         push = self.my_push
         push.audience = jpush.all_
         ios_msg = jpush.ios(alert="Hello, IOS JPush!", badge="+1", extras={'k1': 'v1'}, sound_disable=True)
         android_msg = jpush.android(alert="Hello, android msg")
         push.notification = jpush.notification(alert="Hello, JPush!", android=android_msg, ios=ios_msg)
         push.platform = jpush.all_
-        return Response(push.send())
+        push.send()
 
-
-class SmsAPIView(APIView, DJPushBasicClass):
-    def post(self):
+    def sms(self):
         push = self.my_push
         push.audience = jpush.all_
         push.notification = jpush.notification(alert="a sms message from python jpush api")
         push.platform = jpush.all_
         push.smsmessage = jpush.smsmessage("a sms message from python jpush api", 0)
-        return Response(push.send())
+        push.send()
 
-
-class ValidateAPIView(APIView, DJPushBasicClass):
-    def post(self):
+    def validate(self):
         push = self.my_push
         push.audience = jpush.all_
         push.notification = jpush.notification(alert="Hello, world!")
         push.platform = jpush.all_
-        return Response(push.send_validate())
+        push.send_validate()

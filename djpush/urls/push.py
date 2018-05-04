@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from service.views.push_api import (AudienceAPIView, AllAPIView, NotificationAPIView, OptionsAPIView,
+from djpush.views.push_api import (AudienceAPIView, AllAPIView, NotificationAPIView, OptionsAPIView,
                                     SilentAPIView, SmsAPIView, PlatformMsgAPIView, ValidateAPIView, AliasAPIView)
 
 urlpatterns = [

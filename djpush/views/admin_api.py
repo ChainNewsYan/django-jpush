@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from djpush.admin import DJPushAdmin
+from djpush.djpush.admin import DJPushAdmin
 
 
 class AdminAPIView(APIView):
