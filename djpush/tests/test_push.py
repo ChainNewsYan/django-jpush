@@ -7,10 +7,7 @@ class PushTestCase(APITestCase):
 
     def test_all(self):
         payload = {
-            "alert": {
-                "title": "ChainNews",
-                "body": "News Title",
-            },
+            "alert": "Here test message.",
             "production": False,
             "extras": {"slug": "249142631482"}
         }
