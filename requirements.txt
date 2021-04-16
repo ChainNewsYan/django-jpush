@@ -3,7 +3,7 @@ chardet==3.0.4
 coreapi==2.3.3
 coreschema==0.0.4
 Django==1.11.10
-django-debug-toolbar==1.9.1
+django-debug-toolbar==1.11.1
 django-nose==1.4.5
 djangorestframework==3.7.3
 Faker==0.8.12
